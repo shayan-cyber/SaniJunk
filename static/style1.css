@@ -1,0 +1,279 @@
+*
+{
+    margin: 0;
+    padding: 0;
+}
+p{
+color:black;}
+a{
+color:black;}
+body
+{
+    font-family:sans-serif ;
+}
+#nav-bar
+{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar
+{
+
+    
+    padding: 0 !important;
+}
+
+
+.navbar {
+    background: linear-gradient(318deg, #fbe872, #deff4f);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+
+
+
+
+.navbar-brand img
+{
+height: 40px;
+padding-left: 20px;
+}
+.navbar-nav li{
+    
+    padding:0 10px;
+}
+.navbar-nav li a
+{
+    color:#fff !important;
+    font-weight:600;
+    float: right;
+    text-align: left;
+}
+.fa-bars
+{
+    color: #fff;
+    font-size: 30px !important;
+
+}
+.navbar-toggler
+{
+    outline: none !important;
+} 
+.navbar-nav li a {
+     color: black !important; 
+    font-weight: 600;
+    float: right;
+    text-align: left;
+}
+/*-----------------------------------------------banner section--------------------------------------------------------------*/
+
+#banner
+{
+    
+    color:#fff;
+    padding-top: 5%;
+}
+#banner {
+    background: linear-gradient(318deg, #fbe872, #deff4f);
+    background-size: 400% 400%;
+
+    -webkit-animation: AnimationName 3s ease infinite;
+    -moz-animation: AnimationName 3s ease infinite;
+    animation: AnimationName 3s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+@keyframes AnimationName {
+    0%{background-position:11% 0%}
+    50%{background-position:90% 100%}
+    100%{background-position:11% 0%}
+}
+.promo-title
+{
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 100px;
+}
+.play-btn
+{
+    width: 45px;
+    margin:20px ;
+}
+#banner a
+{   color: black;
+    text-decoration: none;
+}
+
+.bottom-img{
+    width: 100%;
+}
+/*------------------------------services-------------------------------------------*/
+#services{
+    padding: 80px 0;
+}
+.service-img{
+    width: 100px;
+    margin-top: 20px;
+}
+.services{
+    padding: 20px;
+}
+.services h4{
+    padding: 5px;
+    margin-top: 25px;
+}
+.title::before{
+    content: '';
+    background: #7b1798;
+    height: 5px;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    transform: translateY(63px);
+}
+.title::after{
+    content: '';
+    background: #7b1798;
+    height: 10px;
+    width: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+    display: block;
+    transform: translateY(8px);
+}
+#services .btn-primary{
+    box-shadow: none;
+    padding: 8px 25px;
+    border: none;
+    border-radius: 20px;
+    background-image: linear-gradient(to right,#a517ba,#5f1782);
+}
+/*-----------------------------------------about us------------------------------------------------------------------*/
+#about-us
+{
+    background: #f8f9fa;
+    padding-bottom: 50px;
+    padding-top: 50px;
+}
+.about-title
+{
+    font-size:40px ;
+    font-weight: 600;
+    margin-top: 8%;
+}
+#about-us ul li{
+    margin: 10px 0;
+}
+#about-us ul
+{
+    margin-left: 20px;
+} 
+/*----------------------------------------------------------social media section----------------------------------------------*/
+#social-media
+{
+    background-color: #f8f9fa;
+    padding: 100px 0;
+}
+#social-media p{
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: 30px;
+}
+.social-icons img
+{
+    width: 60px;
+    transition: 0.5s;
+}
+.social-icons a:hover img
+{
+    transform: translateY(-10px);
+}
+/*---------------------------------------------------footer section-------------------------------------------*/
+#footer
+{
+    background-image: linear-gradient(transition,#a517ba,#5f1782);
+    color:#fff;
+}
+.footer-img
+{
+    width:100%;
+    position:inherit;
+}
+.footer-box
+{
+    padding: 20px;
+}
+.footer-box img{
+    width: 120px;
+    margin-bottom: 20px;
+}
+.footer-box .fa{
+ margin-right: 8px;
+ font-size: 25px;
+ height:40px;
+ width: 40px;
+ text-align: center;
+ padding-top: 7px;
+ border-radius: 2px;
+ background-image: linear-gradient(to right,#a517ba,#5f1782);
+
+}
+.pro {
+  color: black;
+  font-family: monospace;
+  overflow: hidden; /* Ensures the content is not revealed until the animation */
+  border-right: .15em solid orange; /* The typwriter cursor */
+ 
+  margin: 0 auto; /* Gives that scrolling effect as the typing happens */
+  letter-spacing: .15em; /* Adjust as needed */
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret .5s step-end infinite;
+font-size: 40px;
+    font-weight: 600;
+    margin-top: 1px;
+
+}
+
+/* The typing effect */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+/* The typewriter cursor effect */
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: orange }
+}

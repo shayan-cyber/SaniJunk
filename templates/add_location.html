@@ -1,0 +1,578 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SaniJunk-add_location</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="{% static 'style_f.css' %}">
+  </head>
+  <style>
+    #map {
+    height: 400px;
+    width: 100%;
+    -webkit-box-shadow: -1px 1px 20px -1px #deff4f;
+    -moz-box-shadow: -1px 1px 20px -1px #deff4f;
+    box-shadow: -1px 1px 20px -1px #deff4f;
+    border-radius: 35px 35px 35px 35px;
+    -moz-border-radius: 35px 35px 35px 35px;
+    -webkit-border-radius: 35px 35px 35px 35px;
+    border: 0px solid #deff4f;
+  }
+     /* loader */
+ 
+     #recyclebag, #pin {
+    animation: loc 0.5s infinite linear alternate;
+    transform-origin: center;
+    transform-box: fill-box;
+    }
+
+    @keyframes loc {
+        from{
+            transform: translateY(-50px);
+        }
+        to{
+            transform: translateY(0px);
+        }
+    }
+
+    #hollowcircle1 {
+        animation: cir1 1.2s linear infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+
+    @keyframes cir1 {
+        from{
+            transform: scale(1,1);
+        }
+        to{
+            transform: scale(1.2,1.2);
+        }
+    }
+
+    #hollowcircle2 {
+        animation: cir2 1.2s linear infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+
+    @keyframes cir2 {
+        from{
+            transform: scale(1,1);
+        }
+        to{
+            transform: scale(1.4,1.4);
+        }
+    }
+
+    #hollowcircle3 {
+        animation: cir3 1.2s linear infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+
+    @keyframes cir3 {
+        from{
+            transform: scale(1,1);
+        }
+        to{
+            transform: scale(1.6,1.6);
+        }
+    }
+
+    #hollowcircle4 {
+        animation: cir4 1.2s linear infinite;
+        transform-origin: center;
+        transform-box: fill-box;
+    }
+
+    @keyframes cir4 {
+        from{
+            transform: scale(1,1);
+        }
+        to{
+            transform: scale(1.8,1.8);
+        }
+    }
+    /* loader end */
+  </style>
+<body>
+    <!-- loader -->
+
+  <div style="width: fit-content;
+  height: 200vh;"  class="container-fluid loader">
+    <svg style="max-width: 80vw;" width="500" height="600" viewBox="0 0 826 641" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- <rect width="826" height="641" fill="white"/> -->
+      <g id="hollowcircle1">
+      <g id="Group">
+      <g id="Group_2">
+      <path id="Vector" d="M423 283C359.674 283 308 307.718 308 338C308 368.287 359.683 393 423 393C486.326 393 538 368.282 538 338C538 307.713 486.317 283 423 283ZM423 386.555C367.02 386.555 321.477 364.773 321.477 338C321.477 311.227 367.02 289.445 423 289.445C478.98 289.445 524.523 311.227 524.523 338C524.523 364.773 478.98 386.555 423 386.555Z" fill="#FF0000"/>
+      </g>
+      </g>
+      </g>
+      <g id="solid circle 1">
+      <g id="Group_3">
+      <g id="Group_4">
+      <path id="Vector_2" d="M423.5 292C369.947 292 326 312.283 326 337C326 361.717 369.947 382 423.5 382C477.053 382 521 361.717 521 337C521 312.283 477.053 292 423.5 292Z" fill="#BABABA"/>
+      </g>
+      </g>
+      </g>
+      <g id="square 1">
+      <path id="Vector_3" d="M0 0V641H826V0H0ZM798.467 619.633H27.5333V21.3667H798.467V619.633Z" fill="white"/>
+      <g id="hollowcircle2">
+      <g id="Group_5">
+      <g id="Group_6">
+      <path id="Vector_4" d="M423.5 273C349.436 273 289 302.212 289 338C289 373.793 349.446 403 423.5 403C497.564 403 558 373.788 558 338C558 302.207 497.554 273 423.5 273ZM423.5 395.383C358.027 395.383 304.762 369.641 304.762 338C304.762 306.359 358.027 280.617 423.5 280.617C488.973 280.617 542.238 306.359 542.238 338C542.238 369.641 488.973 395.383 423.5 395.383Z" fill="#28DE2F"/>
+      </g>
+      </g>
+      </g>
+      <g id="hollowcircle3">
+      <g id="Group_7">
+      <g id="Group_8">
+      <path id="Vector_5" d="M423 262C336.546 262 266 296.38 266 338.5C266 380.626 336.558 415 423 415C509.454 415 580 380.62 580 338.5C580 296.374 509.442 262 423 262ZM423 406.035C346.575 406.035 284.398 375.739 284.398 338.5C284.398 301.261 346.575 270.965 423 270.965C499.425 270.965 561.602 301.261 561.602 338.5C561.602 375.739 499.425 406.035 423 406.035Z" fill="#00FFE0"/>
+      </g>
+      </g>
+      </g>
+      <g id="hollowcircle4">
+      <g id="Group_9">
+      <g id="Group_10">
+      <path id="Vector_6" d="M423 248C323.33 248 242 288.672 242 338.5C242 388.335 323.344 429 423 429C522.67 429 604 388.328 604 338.5C604 288.665 522.656 248 423 248ZM423 418.395C334.892 418.395 263.211 382.554 263.211 338.5C263.211 294.446 334.892 258.605 423 258.605C511.108 258.605 582.789 294.446 582.789 338.5C582.789 382.554 511.108 418.395 423 418.395Z" fill="#BABABA"/>
+      </g>
+      </g>
+      </g>
+      </g>
+      <g id="pin">
+      <path id="Vector_7" d="M424.5 195C421.45 195 418.525 199.136 416.368 206.497C414.212 213.859 413 223.844 413 234.255C413 255.935 424.5 338 424.5 338C424.5 338 436 255.935 436 234.255C436 223.844 434.788 213.859 432.632 206.497C430.475 199.136 427.55 195 424.5 195ZM424.5 252.948C423.417 252.948 422.358 251.851 421.458 249.797C420.557 247.743 419.855 244.824 419.441 241.408C419.026 237.993 418.918 234.234 419.129 230.608C419.34 226.982 419.862 223.651 420.628 221.037C421.394 218.423 422.369 216.643 423.432 215.921C424.494 215.2 425.595 215.57 426.596 216.985C427.596 218.4 428.452 220.796 429.053 223.87C429.655 226.944 429.976 230.558 429.976 234.255C429.976 239.213 429.399 243.967 428.372 247.473C427.345 250.978 425.952 252.948 424.5 252.948V252.948Z" fill="black"/>
+      </g>
+      <g id="recyclebag" clip-path="url(#clip0)">
+      <g id="Recycle Bag 1">
+      <path id="Vector_8" d="M450 153C450 156.85 447.075 160 443.5 160H439.145H408.855H398V167H411H437H443.5C450.65 167 456.5 160.7 456.5 153H450Z" fill="#C8FA64"/>
+      <path id="Vector_9" d="M439.145 160L437 167H411L408.855 160H439.145Z" fill="#00CC00"/>
+      <path id="Vector_10" d="M408.855 160L404.5 146C412.105 146 416.395 153 424 153C431.605 153 435.895 146 443.5 146L439.145 160H408.855Z" fill="#4DE600"/>
+      <path id="Vector_11" d="M469.5 226.5C469.5 255.48 437 258 424 258C411 258 378.5 255.48 378.5 226.5C378.5 202 398.78 177.64 411 167H437C449.22 177.64 469.5 202 469.5 226.5Z" fill="#4DE600"/>
+      <g id="Group_11">
+      <path id="Vector_12" d="M428.932 195H418.874L413.061 205.843L418.689 209.343L423.903 199.619L427.943 207.155L425.128 208.905L434.008 211.467L436.387 201.905L433.572 203.655L428.932 195Z" fill="#C8FA64"/>
+      <g id="Group_12">
+      <path id="Vector_13" d="M438.68 231.949L443.709 222.569L437.896 211.726L432.267 215.225L437.48 224.969L429.281 224.969V221.449L422.899 228.449L429.281 235.449L429.281 231.949L438.68 231.949Z" fill="#C8FA64"/>
+      <path id="Vector_14" d="M404.096 222.575L409.124 231.956H420.75L420.75 224.969H410.325L414.365 217.42L417.179 219.17L414.8 209.608L405.921 212.17L408.736 213.92L404.096 222.575Z" fill="#C8FA64"/>
+      </g>
+      </g>
+      </g>
+      </g>
+      <defs>
+      <clipPath id="clip0">
+      <rect width="104" height="112" fill="white" transform="translate(368 145)"/>
+      </clipPath>
+      </defs>
+      </svg>
+    
+
+  </div>
+    <!-- loader end-->
+    <section style="z-index: 99999;" id="nav-bar">
+            
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="{% static 'SanijunkFunky.png' %}" alt=""></a>
+          <button style="border: none;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul style="margin-left: 35vw;" class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_location' %}">Add</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'list' %}">List</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'founders' %}">Founders</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'quiz' %}">Quiz</a>
+              </li>
+              
+              {% if request.user.is_authenticated  %}
+              <li class="nav-item">
+                
+                <a style="opacity: .5;" class="nav-link" href="#">{{request.user.username}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link " href="{% url 'logout' %}" tabindex="-1" aria-disabled="true">Logout</a>
+              </li>
+              {% else %}
+              <li class="nav-item">
+                <a class="nav-link"  href="{% url 'signup_home' %}" tabindex="-1" aria-disabled="true">Login</a>
+              </li>
+              {% endif %}
+            </ul>
+            
+          </div>
+        </div>
+      </nav>
+
+    </section>
+    <div class="container-fluid">
+      <center>
+        <img style="opacity: .1; margin-top:0px; width: 70vw; z-index: -2;" src="{% static 'SanijunkFunky.png' %}" alt="">
+      </center>
+      
+    </div>
+    <section style="margin-top: -50%; z-index: 20;">
+        <!--messages start-->
+        {% if messages %} {% for msg in messages %}
+        <div
+          class="alert alert-{{msg.tags}} alert-dismissible fade show"
+          role="alert"
+        >
+          <strong>{{msg}}</strong>
+        </div>
+        {% endfor %} {% endif %}
+        <!--messages end-->
+
+        <section class="Form">
+          <div class="container mt-4 mb-2">
+            <form style="position: relative; z-index: 9999;;"
+              method="POST"
+              enctype="multipart/form-data"
+              action="{% url 'add_location' %}"
+            >
+              {% csrf_token %}
+              <div class="row mb-3">
+                <label for="Name" class="col-sm-2 col-form-label">Name</label>
+                <div class="col-sm-10">
+                  <input
+                    type="text"
+                    name="Name"
+                    class="form-control"
+                    id="Name"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="inputEmail3" class="col-sm-2 col-form-label"
+                  >Email</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    id="inputEmail3"
+                    required
+                  />
+                </div>
+              </div>
+
+              <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0">Type Of Waste</legend>
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios1"
+                      value="Wet"
+                      checked
+                    />
+                    <label class="form-check-label" for="gridRadios1"> Wet </label>
+                  </div>
+                  <div class="form-check">
+                    <input
+                      class="form-check-input"
+                      type="radio"
+                      name="gridRadios"
+                      id="gridRadios2"
+                      value="Dry"
+                    />
+                    <label class="form-check-label" for="gridRadios2"> Dry </label>
+                  </div>
+                </div>
+                <label
+                  for="customRange2"
+                  class="form-label label col-sm-2 pt-0 mt-1"
+                  >Saturation range</label
+                >
+                <div class="col-sm-10 mt-1">
+                  <input
+                    name="saturation"
+                    type="range"
+                    class="form-range"
+                    id="customRange2"
+                    required
+                  />
+                </div>
+              </fieldset>
+              <!-- <button style="display: block;" id="trigger" onclick="getLocation()">Try It</button>   -->
+              <center>
+                <button
+                  class="btn btn-outline-warning"
+                  style="display: block"
+                  type="button"
+                  id="trigger"
+                  onclick="getLocation()"
+                  required
+                >
+                  Show Map
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="currentColor"
+                    class="bi bi-geo-alt-fill"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"
+                    />
+                  </svg>
+                </button>
+              </center>
+
+              <div class="row mb-3">
+                <div class="container mt-3">
+                  <p
+                    style="
+                      display: none;
+                      margin-bottom: 20px;
+                      font-size: large;
+                      font-weight: bold;
+                    "
+                    id="maptext"
+                  >
+                    Mark The Location
+                  </p>
+                  <div style="display: none" id="map"></div>
+                </div>
+              </div>
+              <div style="display: none" id="coo" class="row mb-3">
+                <label for="example" class="col-sm-2 col-form-label"
+                  >Coordinates</label
+                >
+                <div class="col-sm-10">
+                  <input
+                    class="form-control"
+                    type="text"
+                    name="pos"
+                    id="example"
+                    aria-label="readonly input example"
+                    readonly
+                  />
+                </div>
+              </div>
+
+              <center>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </center>
+            </form>
+          </div>
+        </section>
+    </section>
+  <div style="opacity: .4; margin-top: 150px;" class="container-fluid">
+
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#fbe872" fill-opacity="1" d="M0,224L30,218.7C60,213,120,203,180,170.7C240,139,300,85,360,90.7C420,96,480,160,540,176C600,192,660,160,720,165.3C780,171,840,213,900,202.7C960,192,1020,128,1080,96C1140,64,1200,64,1260,101.3C1320,139,1380,213,1410,250.7L1440,288L1440,320L1410,320C1380,320,1320,320,1260,320C1200,320,1140,320,1080,320C1020,320,960,320,900,320C840,320,780,320,720,320C660,320,600,320,540,320C480,320,420,320,360,320C300,320,240,320,180,320C120,320,60,320,30,320L0,320Z"></path></svg>
+  </div>
+</body>
+
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"
+  ></script>
+  <!-- Get Location -->
+  <script>
+    function getLocation() {
+      var x = document.getElementById("map");
+      var y = document.getElementById("maptext");
+      var z = document.getElementById("coo");
+      var m = document.getElementById("trigger");
+
+      x.style.display = "block";
+      y.style.display = "block";
+      z.style.display = "block";
+      m.style.display = "none";
+
+      console.log("Hello");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(initMap);
+        console.log("Hello");
+      } 
+    }
+
+    
+  </script>
+
+  <!-- Map Marker -->
+
+  <script>
+  
+
+
+    
+      function initMap(position){
+        console.log(position);
+          // maps options
+          var options = {
+              zoom: 14,
+              center:{lat:position.coords.latitude, lng:position.coords.longitude}
+          }
+          var map = new
+          google.maps.Map(document.getElementById('map'),options);
+
+
+        //   Listen For Click On map
+        var tick = true;
+        google.maps.event.addListener(map, 'click', function(event){
+            console.log(event.latLng);
+
+
+           if(tick){
+            document.getElementById("example").setAttribute('value',event.latLng);
+            document.getElementById("example").setAttribute('placeholder',event.latLng);
+
+              addMarker({coords:event.latLng,iconImage:"https://img.icons8.com/clouds/50/000000/add-trash.png"});
+
+            function removeMarkers(){
+                for(i=0; i<gmarkers.length-1; i++){
+                    gmarkers[i].setMap(null);
+                }
+            }
+            removeMarkers();
+                  }
+          
+
+
+
+
+
+
+
+        })
+        // Array Of markers
+              var markers = [
+                  {% for i in locations %}
+              {coords:{lat:{{i.coordinates_lat}}, lng: {{i.coordinates_lng}}},
+              iconImage:"https://img.icons8.com/clouds/50/000000/delete-trash.png",
+              {% if i.sanitized == "Under Sanitization" %}
+         
+    
+                  content : '<p style="font-weight:bold">Locator : {{i.name}} </p><center><a href="{% url 'details' i.pk %}" class="btn btn-info btn-sm" role="button">Details</a></center><center><br><p>Status: Under Sanitization</p></center>'
+              {% else %}
+                  content : '<p style="font-weight:bold">Locator : {{i.name}} </p><center><a href="{% url 'details' i.pk %}" class="btn btn-info btn-sm" role="button">Details</a></center>'
+              {% endif %}
+
+              },
+          {% endfor %}
+
+
+
+              ];
+
+              for (var  i=0; i<markers.length;i++){
+
+                addMarker2(markers[i]);
+              }
+
+
+              // add marker Function
+
+              var executed = false;
+              function addMarker2(props){
+
+
+                  var marker = new google.maps.Marker({
+                 position :props.coords,
+                   map:map,
+
+
+
+               })
+
+                
+
+               if(props.iconImage){
+                   marker.setIcon(props.iconImage);
+
+               }
+               if(props.content){
+                  var infoWindow = new google.maps.InfoWindow({
+                  content : props.content,
+              });
+              marker.addListener('click', function(){
+                  infoWindow.open(map, marker );
+              })
+
+               }
+
+              }
+
+
+
+
+          // add marker Function
+          var gmarkers = [];
+          var executed = false;
+          function addMarker(props){
+
+            if(!executed){
+              var marker = new google.maps.Marker({
+             position :props.coords,
+               map:map,
+
+
+
+           });gmarkers.push(marker);
+            }
+            // executed = true
+
+           if(props.iconImage){
+               marker.setIcon(props.iconImage);
+
+           }
+           if(props.content){
+              var infoWindow = new google.maps.InfoWindow({
+              content : props.content,
+          });
+          marker.addListener('click', function(){
+              infoWindow.open(map, marker );
+          })
+
+           }
+
+          }
+
+
+
+
+      }
+  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCCGjsl4UqbYWGhKj9T_jTXvNAcln5TkUc&callback=initMap&libraries=&v=weekly"
+    defer
+  ></script>
+         <!-- loader -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+         <script>
+           setTimeout(function () {
+            $("html").addClass("loader");
+            $("html").removeClass("loader");
+            $(".loader").css({ display: "none" });
+            $("body").css({ background: "#ffffff" });
+            $(".text").animate({ opacity: "1" });
+            }, 3500);
+     
+          </script>
+          <!-- loader -->
+</html>
