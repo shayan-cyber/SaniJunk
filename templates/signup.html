@@ -63,7 +63,7 @@ body {
 
 <div style="width: fit-content;
 height: 200vh;"  class="container-fluid loader">
-  <svg width="500" height="600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <svg style="margin-top: 140px;" width="500" height="600" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- <rect width="80vw" height="60vh" fill="white"/> -->
     <g id="to be retouched 1">
     <path id="Vector" d="M612 75H0V424H612V75Z" fill="#BCFBFF"/>
@@ -123,7 +123,7 @@ height: 200vh;"  class="container-fluid loader">
         
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#"><img src="{% static 'SanijunkFunky.png' %}" alt=""></a>
+      <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'SanijunkFunky.png' %}" alt=""></a>
       <button style="border: none;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -223,7 +223,7 @@ height: 200vh;"  class="container-fluid loader">
     {% endif %}
 {% endfor %} -->
 <div  class="container">
-    <form style="position: relative; z-index: 9999; margin-top: -40vh" method="POST" action="/signup">
+    <form style="position: relative; z-index: 9999; margin-top: -40vh" method="POST" action="{% url 'signup_home' %}">
         {% csrf_token %}
         <div class="form-group">
             <label for="exampleFormControlInput1"><strong style="color:#fbe872 ;">Email </strong>Address</label>
@@ -272,7 +272,7 @@ height: 200vh;"  class="container-fluid loader">
            <!-- Button trigger modal -->
 <center>
   <strong><p>Already Have An Account ?</p></strong>
-  <button type="button" class="btn btn-outline-warning mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button  id="modal"  type="button" class="btn btn-outline-warning mb-3" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Login
 </button></center>
   
@@ -330,8 +330,12 @@ $("html").removeClass("loader");
 $(".loader").css({ display: "none" });
 $("body").css({ background: "#ffffff" });
 $(".text").animate({ opacity: "1" });
+{% if trick_btn == "button_toggle" %}
+$("#modal").click();
+{% endif %}
 }, 3500);
 
   </script>
   <!-- loader -->
+  
 </html>
