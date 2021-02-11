@@ -28,11 +28,12 @@ def newsletter(request):
 
     
     return HttpResponseRedirect('/')
-def signup_home(request):
+# def signup_home(request):
     
     
-    return render(request,'signup.html')
+#     return render(request,'signup.html')
 def signup(request):
+    context= {}
     if request.method =='POST':
         mail = request.POST.get('email','')
         username = request.POST.get('username','')
@@ -44,24 +45,35 @@ def signup(request):
         userCheck = User.objects.filter(username=username)
         if len(username) > 20:
             messages.warning(request,'Username Is Too Long')
-            return redirect('/signup')
+            # return redirect('/signup')
+            return render(request,'signup.html', context)
             
         if userCheck :
             messages.warning(request,'Choose Different Username')
-            return redirect('/signup')
+            # return redirect('/signup')
+            return render(request,'signup.html', context)
         
         if password == conf_pass:
             user_obj = User.objects.create_user(first_name = name, password = password, email= mail, username=username)
             user_obj.save()
             
-            messages.error(request, 'Account Created Successfully')
+            messages.success(request, 'Account Created Successfully')
+            trick_btn = "button_toggle"
+            context={
+                'trick_btn':trick_btn,
+            }
+            return render(request,'signup.html', context)
+
         else:
             
             messages.warning(request, 'Passwords Do not Match')
-            
+            return render(request,'signup.html', context)
+    else:
+        return render(request,'signup.html', context)
+
             
     
-    return redirect('/signup_home')
+    
 def user_login(request):
     if request.method =='POST':
         user_name = request.POST.get('username', '')
