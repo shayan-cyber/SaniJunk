@@ -83,7 +83,7 @@ body {
 
   <div style="width: fit-content;
   height: 200vh;"  class="container-fluid loader">
-    <svg width="500" height="600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg style="margin-top:140px;" width="500" height="600" fill="none" xmlns="http://www.w3.org/2000/svg">
       <!-- <rect width="80vw" height="60vh" fill="white"/> -->
       <g id="to be retouched 1">
       <path id="Vector" d="M612 75H0V424H612V75Z" fill="#BCFBFF"/>
@@ -143,7 +143,7 @@ body {
           
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="{% static 'SanijunkFunky.png' %}" alt=""></a>
+        <a class="navbar-brand" href="{% url 'home' %}"><img src="{% static 'SanijunkFunky.png' %}" alt=""></a>
         <button style="border: none;" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
