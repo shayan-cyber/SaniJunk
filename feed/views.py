@@ -21,6 +21,17 @@ def newsletter(request):
         print(email)
         nl = NewsLetter(email= email)
         nl.save()
+        #email for sub
+        template_locator = render_to_string('Email_templates/email_for_sub.html')
+        email_locator = EmailMessage(
+            'Thanks For Subscribing To Our Newsletter ~ SaniJunk',
+            template_locator,
+            settings.EMAIL_HOST_USER,
+            [email],
+
+            )
+        email_locator.fail_silently = False
+        email_locator.send()
        
 
         
