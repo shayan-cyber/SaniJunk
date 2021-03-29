@@ -16,5 +16,4 @@ Developers:
   Jyotiska Bhattacharjee,
   
   
-  Abhinav Ghosh , Githyb : https://github.com/Abhinav710-byte
-Sanijunk.co
+  Abhinav Ghosh , Github : https://github.com/Abhinav710-byte
