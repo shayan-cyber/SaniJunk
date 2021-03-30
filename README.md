@@ -10,7 +10,7 @@ Developers:
   Diya Karmakar , Github : https://github.com/diyakarmakar779
   
   
-  Aman Singh ,
+  Aman Singh , Github : https://gitHub.com/GitterDoneBoi
   
   
   Jyotiska Bhattacharjee,
