@@ -13,7 +13,7 @@ Developers:
   Aman Singh , Github : https://gitHub.com/GitterDoneBoi
   
   
-  Jyotiska Bhattacharjee,
+  Jyotiska Bhattacharjee, Github : https://github.com/jyotishka747
   
   
   Abhinav Ghosh , Github : https://github.com/Abhinav710-byte
